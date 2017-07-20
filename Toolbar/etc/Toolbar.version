@@ -1,6 +1,6 @@
 {
   "NAME": "Toolbar",
-  "URL": "http://ksp-avc.cybutek.net/version.php?id=481",
+  "URL": "https://raw.githubusercontent.com/linuxgurugamer/ksp_toolbar/1.2.2/Toolbar/etc/Toolbar.version",
   "VERSION": {
     "MAJOR": 1,
     "MINOR": 7,
@@ -13,15 +13,15 @@
     "PATCH": 0
   },
   "KSP_VERSION_MIN":
-	{
-		"MAJOR":1,
-		"MINOR":2,
-		"PATCH":0
-	},
-	"KSP_VERSION_MAX":
-	{
-		"MAJOR":1,
-		"MINOR":2,
-		"PATCH":2
-	}
+  {
+    "MAJOR":1,
+    "MINOR":2,
+    "PATCH":0
+  },
+  "KSP_VERSION_MAX":
+  {
+    "MAJOR":1,
+    "MINOR":2,
+    "PATCH":2
+  }
 }

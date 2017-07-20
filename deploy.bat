@@ -10,6 +10,7 @@ set H=R:\KSP_1.2.2_dev
 echo %H%
 
 copy /Y %ProjectDir%\obj\Debug\aaa_Toolbar.dll %Targetdir%\Toolbar.dll
+copy Toolbar\etc\Toolbar.version %Targetdir%\Toolbar.version
 
 
 
