@@ -34,23 +34,24 @@ using UnityEngine;
 namespace Toolbar {
 	[KSPAddonFixed(KSPAddon.Startup.MainMenu, true, typeof(InstallChecker))]
 	internal class InstallChecker : MonoBehaviour {
-		internal void Start() {
-			string executingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-			IEnumerable<AssemblyLoader.LoadedAssembly> assemblies = AssemblyLoader.loadedAssemblies
-					.Where(a => (a.assembly.GetName().Name == executingAssemblyName) && (a.url != "000_Toolbar"));
-			if (assemblies.Any()) {
-				Uri rootUri = new Uri(Path.GetFullPath(KSPUtil.ApplicationRootPath));
-				IEnumerable<string> badPaths = assemblies
-					.Select(a => Uri.UnescapeDataString(rootUri.MakeRelativeUri(new Uri(a.path)).ToString().Replace('/', Path.DirectorySeparatorChar)));
-				PopupDialog.SpawnPopupDialog(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
-                    "IncorrectToolbarPluginInstallation",
-					"Incorrect Toolbar Plugin Installation",
-					"The Toolbar Plugin has been installed incorrectly and will not function properly. All Toolbar Plugin files " +
-					"should be located in GameData" + Path.DirectorySeparatorChar + "000_Toolbar (case sensitive.) \n\n" +
-					"Do not move any files from inside the Toolbar Plugin folder.\n\n" +
-					"Incorrect path(s):\n\n" + string.Join("\n", badPaths.ToArray()),
-					"OK", false, HighLogic.UISkin);
-			}
-		}
+        internal void Start()
+        {
+            string executingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+            IEnumerable<AssemblyLoader.LoadedAssembly> assemblies = AssemblyLoader.loadedAssemblies
+                    .Where(a => (a.assembly.GetName().Name == executingAssemblyName) && (a.url != "000_Toolbar"));
+            if (assemblies.Any())
+            {
+                Uri rootUri = new Uri(Path.GetFullPath(KSPUtil.ApplicationRootPath));
+                IEnumerable<string> badPaths = assemblies
+                    .Select(a => Uri.UnescapeDataString(rootUri.MakeRelativeUri(new Uri(a.path)).ToString().Replace('/', Path.DirectorySeparatorChar)));
+                PopupDialog.SpawnPopupDialog(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                    "Incorrect Toolbar Plugin Installation",
+                    "The Toolbar Plugin has been installed incorrectly and will not function properly. All Toolbar Plugin files " +
+                    "should be located in GameData" + Path.DirectorySeparatorChar + "000_Toolbar (case sensitive.) \n\n" +
+                    "Do not move any files from inside the Toolbar Plugin folder.\n\n" +
+                    "Incorrect path(s):\n\n" + string.Join("\n", badPaths.ToArray()),
+                    "OK", false, HighLogic.UISkin);
+            }
+        }
 	}
 }
