@@ -5,7 +5,7 @@ set ProjectDir=Toolbar
 set Targetdir=GameData\000_Toolbar
 
 
-set H=R:\KSP_1.3.0_dev
+set H=R:\KSP_1.3.1_dev
 echo %H%
 
 copy /Y %ProjectDir%\obj\Debug\aaa_Toolbar.dll %Targetdir%\Toolbar.dll
