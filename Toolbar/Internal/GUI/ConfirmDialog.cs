@@ -37,12 +37,14 @@ namespace Toolbar {
 		private Action onCancel;
 		private string okText;
 		private string cancelText;
-		// dictionary.cfg
-		// #TOOLBAR_UI_OK = "OK"
+        // dictionary.cfg
+        // #TOOLBAR_UI_OK = "OK"
         // #TOOLBAR_UI_CANCEL = "Cancel"
         //
         // eg : Localizer.Format("#ID")
-		internal ConfirmDialog(string title, string text, Action onOk, Action onCancel, string okText = "OK", string cancelText = "Cancel") : base()
+
+
+            internal ConfirmDialog(string title, string text, Action onOk, Action onCancel, string okText = "OK", string cancelText = "Cancel") : base()
         {
             if (okText == "OK")
                 okText = Localizer.Format("#TOOLBAR_UI_OK");
