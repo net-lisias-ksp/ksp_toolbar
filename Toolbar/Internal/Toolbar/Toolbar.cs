@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace Toolbar {
 	internal class Toolbar : ICursorGrabber {
@@ -1514,7 +1515,7 @@ namespace Toolbar {
         //
         // eg : Localizer.Format("#ID")
         //
-			ConfirmDialog.confirm(eg : Localizer.Format("#TOOLBAR_UI_DELETE_FOLDER"), Localizer.Format("#TOOLBAR_UI_DELETE_FOLDER_HINT"),
+			ConfirmDialog.confirm(Localizer.Format("#TOOLBAR_UI_DELETE_FOLDER"), Localizer.Format("#TOOLBAR_UI_DELETE_FOLDER_HINT"),
 				() => removeFolder(folder));
 		}
 
