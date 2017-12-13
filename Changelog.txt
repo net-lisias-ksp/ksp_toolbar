@@ -10,3 +10,9 @@
 
 1.7.16.1
 	Localization files were missing
+
+1.7.16.2
+	Updated localization file
+	Split localizations into individual files
+	Updated About url
+	Updated check for correct path
