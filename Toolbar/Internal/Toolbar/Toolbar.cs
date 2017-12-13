@@ -894,7 +894,7 @@ namespace Toolbar {
 
 				Command command = new Command(ToolbarManager.NAMESPACE_INTERNAL, "configureVisibleButtons");
 				command.TexturePath = "000_Toolbar/new-button-available";
-				command.ToolTip = "Configure Visible Toolbar Buttons";
+				command.ToolTip = Localizer.Format("#TOOLBAR_UI_CONFIGURE_VISIBLE_BUTTONS_HINT");
 				command.OnClick += (e) => {
 					toggleVisibleButtonsSelector();
 				};
