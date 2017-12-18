@@ -22,3 +22,6 @@
 
 1.7.16.4
 	Added spanish translation, thanks to forum user @fitiales
+
+1.7.16.5
+	Updated spanish translated, release
