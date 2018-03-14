@@ -25,3 +25,6 @@
 
 1.7.16.5
 	Updated spanish translated, release
+
+1.7.17
+	Updated for 1.4.1
