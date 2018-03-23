@@ -1,3 +1,12 @@
+1.7.17.2
+	Disabled cursor switching on Linux only
+
+1.7.17.1
+	Added code to load textures manually, since Unity tries to compress them in the db
+
+1.7.17
+	Updated for 1.4.1
+
 1.7.15
 	Adoption by LGG
 	Rebuild for 1.3.1
@@ -28,3 +37,6 @@
 
 1.7.17
 	Updated for 1.4.1
+
+1.7.x
+	Fixed fuzzy buttons

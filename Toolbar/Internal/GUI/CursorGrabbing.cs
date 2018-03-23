@@ -29,6 +29,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+using Cursors;
+
 namespace Toolbar {
 	internal interface ICursorGrabber {
 		bool grabCursor();
@@ -44,7 +46,10 @@ namespace Toolbar {
 		}
 
 		internal void update() {
-			bool grabbed = false;
+            bool grabbed = false;
+            if (Application.platform == RuntimePlatform.LinuxPlayer)
+               return;
+
 			foreach (ICursorGrabber grabber in grabbers) {
 				if (grabber.grabCursor()) {
 					grabbed = true;
@@ -55,8 +60,12 @@ namespace Toolbar {
 			if (grabbed) {
 				cursorGrabbed = true;
 			} else if (cursorGrabbed) {
-				Cursor.SetCursor(null, new Vector2(0, 0), CursorMode.Auto);
-				cursorGrabbed = false;
+                //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                //CursorController.Instance.ForceDefaultCursor();
+                //Cursor.SetCursor(Utils.GetTexture("000_Toolbar/stockNormal", false), new Vector2(0, 0), CursorMode.ForceSoftware);
+
+               // public CursorItem AddCursor(string id, CustomCursor defaultCursor, CustomCursor leftClickCursor = null, CustomCursor rightClickCursor = null);
+                cursorGrabbed = false;
 			}
 		}
 
@@ -65,7 +74,7 @@ namespace Toolbar {
 		}
 
 		internal void remove(ICursorGrabber grabber) {
-			grabbers.Remove(grabber);
-		}
+			grabbers.Remove(grabber);           
+        }
 	}
 }

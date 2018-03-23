@@ -67,7 +67,7 @@ namespace Toolbar {
 		private Texture2D CursorTexture {
 			get {
 				if (cursorTexture_ == null) {
-					cursorTexture_ = GameDatabase.Instance.GetTexture(cursorTexturePath, false);
+					cursorTexture_ = Utils.GetTexture(cursorTexturePath, false);
 				}
 				return cursorTexture_;
 			}
@@ -130,7 +130,7 @@ namespace Toolbar {
 				bool inArea = isInArea(mousePos) && ((handleAreaCheck == null) || handleAreaCheck(mousePos));
 				bool setCursor = inArea || Dragging;
 				if (setCursor) {
-					Cursor.SetCursor(CursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
+				    Cursor.SetCursor(CursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
 				}
 				return setCursor;
 			} else {

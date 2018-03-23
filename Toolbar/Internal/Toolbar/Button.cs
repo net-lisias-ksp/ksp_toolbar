@@ -91,7 +91,7 @@ namespace Toolbar {
 			get {
 				if ((texture_ == null) && (command.TexturePath != null)) {
 					try {
-						texture_ = GameDatabase.Instance.GetTexture(command.TexturePath, false);
+						texture_ = Utils.GetTexture(command.TexturePath, false);
 						if (texture_ != null) {
 							if ((texture_.width > MAX_TEX_WIDTH) || (texture_.height > MAX_TEX_HEIGHT)) {
 								Log.error("button texture exceeds {0}x{1} pixels, ignoring texture: {2}", MAX_TEX_WIDTH, MAX_TEX_HEIGHT, command.FullId);

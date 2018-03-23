@@ -184,8 +184,13 @@ namespace Toolbar {
 		private VisibleButtons visibleButtons;
 		private Button dropdownMenuButton;
 		private PopupMenu dropdownMenu;
-		private bool rectLocked = true;
-		private bool buttonOrderLocked = true;
+        private bool rectLocked = true;
+#if DEBUG
+        private bool rectLockedSize = true;
+        private bool rectLockedPos = true;
+#endif
+
+        private bool buttonOrderLocked = true;
 		private bool autoHide;
 		private DisplayMode displayMode = DisplayMode.VISIBLE;
 		private long slideInOrOutStartTime;
@@ -1022,7 +1027,7 @@ namespace Toolbar {
 		}
 
 		private bool textureExists(string texturePath) {
-			return GameDatabase.Instance.GetTexture(texturePath, false) != null;
+			return Utils.TextureExists(texturePath);
 		}
 
 		internal void saveSettings(ConfigNode toolbarNode) {
@@ -1127,10 +1132,62 @@ namespace Toolbar {
 						}
 					}
 				};
-				toggleRectLockButton.command.Enabled = buttonOrderLocked;
-				dropdownMenu += toggleRectLockButton;
 
-				Button toggleButtonOrderLockButton = Button.createMenuOption(buttonOrderLocked ? Localizer.Format("#TOOLBAR_UI_UNLOCK_BUTTON_ORDER") : Localizer.Format("#TOOLBAR_UI_LOCK_BUTTON_ORDER"));
+                toggleRectLockButton.command.Enabled = buttonOrderLocked;
+                dropdownMenu += toggleRectLockButton;
+#if DEBUG
+                Button toggleRectLockButton2 = Button.createMenuOption(rectLockedPos ? "Unlock Position" : "Lock Position");
+                toggleRectLockButton2.OnClick += (e) => {
+                    rectLockedPos = !rectLockedPos;
+                    draggable.Enabled = !rectLockedPos;
+
+                    if (rectLockedPos)
+                    {
+                        fireChange();
+                    }
+                    else
+                    {
+                        autoHide = false;
+                        foreach (Toolbar folder in folders.Values)
+                        {
+                            folder.Visible = false;
+                        }
+                        if (visibleButtonsSelector != null)
+                        {
+                            visibleButtonsSelector.destroy();
+                        }
+                    }
+                };
+
+                dropdownMenu += toggleRectLockButton2;
+
+                Button toggleRectLockButton3 = Button.createMenuOption(rectLockedSize ? "Unlock Size" : "Lock Size");
+                toggleRectLockButton3.OnClick += (e) => {
+                    rectLockedSize = !rectLockedSize;
+                    resizable.Enabled = !rectLockedSize;
+
+                    if (rectLockedSize)
+                    {
+                        fireChange();
+                    }
+                    else
+                    {
+                        autoHide = false;
+                        foreach (Toolbar folder in folders.Values)
+                        {
+                            folder.Visible = false;
+                        }
+                        if (visibleButtonsSelector != null)
+                        {
+                            visibleButtonsSelector.destroy();
+                        }
+                    }
+                };
+
+                dropdownMenu += toggleRectLockButton3;
+#endif
+
+                Button toggleButtonOrderLockButton = Button.createMenuOption(buttonOrderLocked ? Localizer.Format("#TOOLBAR_UI_UNLOCK_BUTTON_ORDER") : Localizer.Format("#TOOLBAR_UI_LOCK_BUTTON_ORDER"));
 				toggleButtonOrderLockButton.OnClick += (e) => {
 					buttonOrderLocked = !buttonOrderLocked;
 
@@ -1543,7 +1600,7 @@ namespace Toolbar {
 					b => !b.Equals(dropdownMenuButton) && getRect(b).shift(new Vector2(rect.x + PADDING, rect.y + PADDING)).Contains(mousePos));
 				bool setCursor = (hoveredButton != null) || (draggedButton != null);
 				if (setCursor) {
-					Cursor.SetCursor(GameDatabase.Instance.GetTexture("000_Toolbar/move-cursor", false), new Vector2(10, 10), CursorMode.ForceSoftware);
+					Cursor.SetCursor(Utils.GetTexture("000_Toolbar/move-cursor", false), new Vector2(10, 10), CursorMode.ForceSoftware);
 				}
 				return setCursor;
 			} else {
