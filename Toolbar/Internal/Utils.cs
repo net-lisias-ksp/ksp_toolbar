@@ -96,15 +96,12 @@ namespace Toolbar {
                                 UnityEngine.Debug.LogError("DDS: File is not a DDS format file!");
                                 return false;
                             }
-                            DDSHeader dDSHeader = new DDSHeader(binaryReader);
-                            if (dDSHeader.ddspf.dwFourCC == DDSValues.uintDX10)
-                            {
-                                new DDSHeaderDX10(binaryReader);
-                            }
+                            DDSHeader ddSHeader = new DDSHeader(binaryReader);
+
                             TextureFormat tf = TextureFormat.Alpha8;
-                            if (dDSHeader.ddspf.dwFourCC == DDSValues.uintDXT1)
+                            if (ddSHeader.ddspf.dwFourCC == DDSValues.uintDXT1)
                                 tf = TextureFormat.DXT1;
-                            if (dDSHeader.ddspf.dwFourCC == DDSValues.uintDXT5)
+                            if (ddSHeader.ddspf.dwFourCC == DDSValues.uintDXT5)
                                 tf = TextureFormat.DXT5;
                             if (tf == TextureFormat.Alpha8)
                                 return false;
