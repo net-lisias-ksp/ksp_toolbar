@@ -41,5 +41,8 @@
 1.7.17
 	Updated for 1.4.1
 
-1.7.x
+1.7.17.3
 	Fixed fuzzy buttons
+
+1.7.17.4
+	Added support for textures loaded by mods and not from a file

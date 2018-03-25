@@ -176,7 +176,7 @@ namespace Toolbar {
 
             if (LoadImageFromFile(ref tex, KSPUtil.ApplicationRootPath + "GameData/" + path))
                 return tex;
-            return tex;
+            return null;
         }
     }
 }
