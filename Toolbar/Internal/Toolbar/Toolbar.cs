@@ -299,8 +299,22 @@ namespace Toolbar {
 		}
 
 		internal void draw() {
-			// only show toolbar if there is at least one visible button that is not the drop-down menu button
-			if (Visible &&
+            // Note regarding three added "if ((Event.current.type == EventType.Layout) || (Event.current.type == EventType.Repaint))" below:
+            // OnGUI() in ToolbarManager.cs (which calls us here) is called multiple times by Unity per Frame with different event types (Event.current.type).
+            // https://docs.unity3d.com/ScriptReference/EventType.html
+            // A Layout-Event, sometimes input events and in the end a Repaint-Event.
+            // Unity throws an exception when the layout is changed between the Layout-Event-Call and the Repaint-Event-Call.
+            // This happens on the toolbar sometimes when you have the auto-hide option enabled.
+            // To prevent this, the layout may not be changed between Layout-Call and Repaint-Call.
+            // So the ToolbarBorder and the Popups routine (that threw exceptions) got covered in an "if in layout-call or repaint-call".
+            // Maybe that is not the perfect solution, but it seems to work for now and didn't require a rewrite.
+            // see also:
+            // https://answers.unity.com/questions/400454/argumentexception-getting-control-0s-position-in-a-1.html
+            // https://answers.unity.com/questions/360901/editor-timeline-create-his-personnal-gui-timeline-.html
+            // Perfect solution would be going full through the code and check whats layout, input-handling and drawing and handle each only in the matching OnGui() call.
+
+            // only show toolbar if there is at least one visible button that is not the drop-down menu button
+            if (Visible &&
 				((mode == Mode.FOLDER) || buttons.Any((b) => !b.Equals(dropdownMenuButton) && isEffectivelyUserVisible(b)))) {
 
 				forceAutoSizeIfButtonVisibilitiesChanged();
@@ -317,7 +331,8 @@ namespace Toolbar {
 				int oldDepth = GUI.depth;
 
 				GUI.depth = -99;
-				drawToolbarBorder();
+                if ((Event.current.type == EventType.Layout) || (Event.current.type == EventType.Repaint))
+                    drawToolbarBorder();
 
 				GUI.depth = -100;
 				if (buttonOrderDropMarker != null) {
@@ -340,7 +355,8 @@ namespace Toolbar {
 				}
 
 				if (Enabled && rectLocked && (buttonOrderLocked || (draggedButton == null)) && (dropdownMenu == null) && (displayMode == DisplayMode.VISIBLE)) {
-					drawButtonToolTips();
+                    if ((Event.current.type == EventType.Layout) || (Event.current.type == EventType.Repaint))
+                        drawButtonToolTips();
 				}
 
 				GUI.depth = oldDepth;

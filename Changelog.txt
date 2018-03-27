@@ -45,4 +45,8 @@
 	Fixed fuzzy buttons
 
 1.7.17.4
-	Added support for textures loaded by mods and not from a file
+	Added back support for textures loaded by mods and not from a file
+
+1.7.17.5
+	Thanks to forum user @Jebs_SY, fixed an old, annoying but essentially harmless exception in the logs
+		where the layout was changed between Layout and Repaint
