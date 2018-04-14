@@ -53,3 +53,6 @@
 
 1.7.17.6
 	Removed log spam when textures are loaded by mod and not from a file
+
+1.7.17.7
+	Updated .version info for 1.4.*
