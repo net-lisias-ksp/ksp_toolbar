@@ -50,3 +50,6 @@
 1.7.17.5
 	Thanks to forum user @Jebs_SY, fixed an old, annoying but essentially harmless exception in the logs
 		where the layout was changed between Layout and Repaint
+
+1.7.17.6
+	Removed log spam when textures are loaded by mod and not from a file
