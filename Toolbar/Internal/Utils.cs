@@ -169,12 +169,16 @@ namespace Toolbar {
             }
             return false;
         }
+        internal static string TexPathname(string path)
+        {
+            return KSPUtil.ApplicationRootPath + "GameData/" + path;
+        }
         internal static Texture2D GetTexture(string path, bool b)
         {
 
             Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
 
-            if (LoadImageFromFile(ref tex, KSPUtil.ApplicationRootPath + "GameData/" + path))
+            if (LoadImageFromFile(ref tex, TexPathname(path)))
                 return tex;
             return null;
         }

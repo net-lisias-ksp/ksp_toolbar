@@ -24,6 +24,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -92,8 +93,9 @@ namespace Toolbar {
                 Log.info("Texture");
 				if ((texture_ == null) && (command.TexturePath != null)) {
 					try {
-                        texture_ = GameDatabase.Instance.GetTexture(command.TexturePath, false);
-                        if (texture_ == null)
+                        if (!File.Exists(Utils.TexPathname(command.TexturePath)))
+                            texture_ = GameDatabase.Instance.GetTexture(command.TexturePath, false);
+                        else
                             texture_ = Utils.GetTexture(command.TexturePath, false);
                         //if (texture_ == null)
                         //    texture_ = GameDatabase.Instance.GetTexture(command.TexturePath, false);

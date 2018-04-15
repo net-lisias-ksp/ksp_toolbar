@@ -56,3 +56,6 @@
 
 1.7.17.7
 	Updated .version info for 1.4.*
+
+1.7.17.8
+	Fixed texture when file exists
