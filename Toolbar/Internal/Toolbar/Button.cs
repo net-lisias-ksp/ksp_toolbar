@@ -93,7 +93,7 @@ namespace Toolbar {
                 Log.info("Texture");
 				if ((texture_ == null) && (command.TexturePath != null)) {
 					try {
-                        if (!File.Exists(Utils.TexPathname(command.TexturePath)))
+                        if (! Utils.TextureExists(Utils.TexPathname(command.TexturePath)))
                             texture_ = GameDatabase.Instance.GetTexture(command.TexturePath, false);
                         else
                             texture_ = Utils.GetTexture(command.TexturePath, false);

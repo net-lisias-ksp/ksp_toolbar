@@ -171,8 +171,11 @@ namespace Toolbar {
         }
         internal static string TexPathname(string path)
         {
-            return KSPUtil.ApplicationRootPath + "GameData/" + path;
+            string s =  KSPUtil.ApplicationRootPath + "GameData/" + path;
+            Log.info("TexPathname: " + s);
+            return s;
         }
+
         internal static Texture2D GetTexture(string path, bool b)
         {
 
