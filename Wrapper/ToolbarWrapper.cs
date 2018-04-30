@@ -188,24 +188,30 @@ namespace ToolbarWrapper {
 			get;
 		}
 
-		/// <summary>
-		/// Whether this button is currently effectively visible or not. This is a combination of
-		/// <see cref="Visible"/> and <see cref="Visibility"/>.
-		/// </summary>
-		/// <remarks>
-		/// Note that the toolbar is not visible in certain game scenes, for example the loading screens. This property
-		/// does not reflect button invisibility in those scenes. In addition, this property does not reflect the
-		/// player's configuration of the button's visibility.
-		/// </remarks>
-		bool EffectivelyVisible {
-			get;
-		}
+        /// <summary>
+        /// Whether this button is currently effectively visible or not. This is a combination of
+        /// <see cref="Visible"/> and <see cref="Visibility"/>.
+        /// </summary>
+        /// <remarks>
+        /// Note that the toolbar is not visible in certain game scenes, for example the loading screens. This property
+        /// does not reflect button invisibility in those scenes. In addition, this property does not reflect the
+        /// player's configuration of the button's visibility.
+        /// </remarks>
+        bool EffectivelyVisible
+        {
+            get;
+        }
+        bool IsHovering
+        {
+            get;
+        }
 
-		/// <summary>
-		/// Whether this button is currently enabled (clickable) or not. This does not affect the player's ability to
-		/// position the button on their toolbar.
-		/// </summary>
-		bool Enabled {
+
+        /// <summary>
+        /// Whether this button is currently enabled (clickable) or not. This does not affect the player's ability to
+        /// position the button on their toolbar.
+        /// </summary>
+        bool Enabled {
 			set;
 			get;
 		}
@@ -604,13 +610,22 @@ namespace ToolbarWrapper {
 		}
 		private IVisibility visibility_;
 
-		public bool EffectivelyVisible {
-			get {
-				return (bool) types.button.effectivelyVisibleProperty.GetValue(realButton, null);
-			}
-		}
+        public bool EffectivelyVisible
+        {
+            get
+            {
+                return (bool)types.button.effectivelyVisibleProperty.GetValue(realButton, null);
+            }
+        }
+        public bool IsHovering
+        {
+            get
+            {
+                return (bool)types.button.isHoveringProperty.GetValue(realButton, null);
+            }
+        }
 
-		public bool Enabled {
+        public bool Enabled {
 			set {
 				types.button.enabledProperty.SetValue(realButton, value, null);
 			}
@@ -760,6 +775,7 @@ namespace ToolbarWrapper {
 		internal readonly PropertyInfo visibleProperty;
 		internal readonly PropertyInfo visibilityProperty;
 		internal readonly PropertyInfo effectivelyVisibleProperty;
+        internal readonly PropertyInfo isHoveringProperty;
 		internal readonly PropertyInfo enabledProperty;
 		internal readonly PropertyInfo importantProperty;
 		internal readonly PropertyInfo drawableProperty;
@@ -778,7 +794,9 @@ namespace ToolbarWrapper {
 			visibleProperty = ToolbarTypes.getProperty(iButtonType, "Visible");
 			visibilityProperty = ToolbarTypes.getProperty(iButtonType, "Visibility");
 			effectivelyVisibleProperty = ToolbarTypes.getProperty(iButtonType, "EffectivelyVisible");
-			enabledProperty = ToolbarTypes.getProperty(iButtonType, "Enabled");
+            isHoveringProperty = ToolbarTypes.getProperty(iButtonType, "IsHovering");
+
+            enabledProperty = ToolbarTypes.getProperty(iButtonType, "Enabled");
 			importantProperty = ToolbarTypes.getProperty(iButtonType, "Important");
 			drawableProperty = ToolbarTypes.getProperty(iButtonType, "Drawable");
 			onClickEvent = ToolbarTypes.getEvent(iButtonType, "OnClick");

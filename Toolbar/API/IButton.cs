@@ -215,6 +215,10 @@ namespace Toolbar {
 		/// </example>
 		event MouseLeaveHandler OnMouseLeave;
 
+        bool IsHovering {
+            get;
+        }
+
 		/// <summary>
 		/// Permanently destroys this button so that it is no longer displayed.
 		/// Should be used when a plugin is stopped to remove leftover buttons.

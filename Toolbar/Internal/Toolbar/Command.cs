@@ -213,6 +213,14 @@ namespace Toolbar {
 		public event ClickHandler OnClick;
 		public event MouseEnterHandler OnMouseEnter;
 		public event MouseLeaveHandler OnMouseLeave;
+        private bool isHovering = false;
+        public bool IsHovering
+        {
+            get
+            {
+                return isHovering;
+            }
+        }
 
 		internal event Action OnChange;
 		internal event Action OnDestroy;
@@ -261,6 +269,7 @@ namespace Toolbar {
 
 		internal void mouseEnter() {
 			if (!destroyed) {
+                isHovering = true;
 				if (OnMouseEnter != null) {
 					try {
 						OnMouseEnter(new MouseEnterEvent(this));
@@ -273,6 +282,7 @@ namespace Toolbar {
 
 		internal void mouseLeave() {
 			if (!destroyed) {
+                isHovering = false;
 				if (OnMouseLeave != null) {
 					try {
 						OnMouseLeave(new MouseLeaveEvent(this));
