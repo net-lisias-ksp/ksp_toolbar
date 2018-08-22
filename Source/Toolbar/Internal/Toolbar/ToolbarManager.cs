@@ -74,17 +74,20 @@ namespace Toolbar {
 			if (Instance == null) {
 				Instance = this;
 				InternalInstance = this;
-				GameObject.DontDestroyOnLoad(this);
 
 				commands_ = new HashSet<Command>();
 				toolbars = new Dictionary<string, Toolbar>();
-
-				this.loadSettings();
-				loadSettings(ToolbarGameScene.MAINMENU);
 			} else {
 				Log.warn("ToolbarManager already running, marking this instance as stale");
 				running = false;
 			}
+		}
+
+		// only executed once, use for things not allowed to execute in the constructor
+		private void Awake() {
+			DontDestroyOnLoad(this);
+			this.loadSettings();
+			loadSettings(ToolbarGameScene.MAINMENU);
 		}
 
 		private void Start() {
