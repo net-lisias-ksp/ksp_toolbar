@@ -1,5 +1,7 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0325: 1.7.17.4 (linuxgurugamer) for KSP 1.4.1
+	+ Added back support for textures loaded by mods and not from a file
 * 2018-0324: 1.7.17.3 (linuxgurugamer) for KSP 1.4.1
 	+ Added dds format to texture loading code
 * 2018-0323: 1.7.17.2 (linuxgurugamer) for KSP 1.4.1
