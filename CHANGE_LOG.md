@@ -1,5 +1,7 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0314: 1.7.17 (linuxgurugamer) for KSP 1.4.1
+	+ Updated for 1.4.1
 * 2017-1218: 1.7.16.5 (linuxgurugamer) for KSP 1.3
 	+ Localization
 * 2017-1214: 1.7.16.3 (linuxgurugamer) for KSP 1.3 PRE-RELEASE
