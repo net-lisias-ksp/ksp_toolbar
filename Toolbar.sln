@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolbar", "Toolbar\Toolbar.csproj", "{E48DD7E6-5016-4ECF-A2C8-73A40BEAC326}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolbar", "Source/Toolbar\Toolbar.csproj", "{E48DD7E6-5016-4ECF-A2C8-73A40BEAC326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestButtons", "TestButtons\TestButtons.csproj", "{BDDFDD67-E023-41EA-B8F1-559996B9ADAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestButtons", "Source/TestButtons\TestButtons.csproj", "{BDDFDD67-E023-41EA-B8F1-559996B9ADAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wrapper", "Wrapper\Wrapper.csproj", "{E258AB2C-E2BB-4ACA-B902-C98582041F69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wrapper", "Source/Wrapper\Wrapper.csproj", "{E258AB2C-E2BB-4ACA-B902-C98582041F69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{293FCA15-B1A7-48B1-80A4-85B8C1175783}"
 	ProjectSection(SolutionItems) = preProject
