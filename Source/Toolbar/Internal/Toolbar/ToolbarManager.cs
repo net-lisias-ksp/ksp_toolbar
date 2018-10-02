@@ -29,10 +29,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+using KSPe;
+
 namespace Toolbar {
 	[KSPAddonFixed(KSPAddon.Startup.EveryScene, true, typeof(ToolbarManager))]
 	public partial class ToolbarManager : MonoBehaviour, IToolbarManager {
-		private static readonly string SETTINGS_FILE = KSPUtil.ApplicationRootPath + "GameData/toolbar-settings.dat";
+		private  const string ROOT_NODE = "toolbars";
 		internal const string FORUM_THREAD_URL = "https://forum.kerbalspaceprogram.com/index.php?/topic/161857-131-toolbar-continued";
 		internal const string NAMESPACE_INTERNAL = "__TOOLBAR_INTERNAL";
 
@@ -60,7 +62,7 @@ namespace Toolbar {
 		internal event Action OnCommandAdded;
 
 		private Dictionary<string, Toolbar> toolbars;
-		private ConfigNode settings;
+		private readonly PluginConfig settings = PluginConfig.ForType<Toolbar>(ROOT_NODE, "settings.cfg");
 		private bool running = true;
 		private ToolbarGameScene gameScene = ToolbarGameScene.LOADING;
 		private bool uiHidden;
@@ -158,8 +160,8 @@ namespace Toolbar {
 			bool checkForUpdates = true;
 
 			ConfigNode root = loadSettings();
-			if (root.HasNode("toolbars")) {
-				ConfigNode toolbarsNode = root.GetNode("toolbars");
+			if (root.HasNode(ROOT_NODE)) {
+				ConfigNode toolbarsNode = root.GetNode(ROOT_NODE);
 				Log.Level = (LogLevel) int.Parse(toolbarsNode.get("logLevel", ((int)
 #if DEBUG
 						LogLevel.INFO
@@ -186,16 +188,15 @@ namespace Toolbar {
 		}
 
 		private ConfigNode loadSettings() {
-			if (settings == null) {
-				settings = ConfigNode.Load(SETTINGS_FILE) ?? new ConfigNode();
-			}
+			if (settings.IsLoadable)    settings.Load();
+			else				        settings.Save(new ConfigNode());
 			convertSettings();
-			return settings;
+			return settings.Node;
 		}
 
 		private void convertSettings() {
-			if (settings.HasNode("toolbars")) {
-				ConfigNode toolbarsNode = settings.GetNode("toolbars");
+			if (settings.Node.HasNode(ROOT_NODE)) {
+				ConfigNode toolbarsNode = settings.Node.GetNode(ROOT_NODE);
 				if (toolbarsNode.HasNode("toolbar")) {
 					ConfigNode toolbarNode = toolbarsNode.GetNode("toolbar");
 
@@ -216,7 +217,7 @@ namespace Toolbar {
 					toolbarsNode.RemoveNode("toolbar");
 
 					saveSettings(ToolbarGameScene.MAINMENU);
-					settings = ConfigNode.Load(SETTINGS_FILE);
+					settings.Load();
 				}
 			}
 		}
@@ -229,14 +230,14 @@ namespace Toolbar {
 			Log.info("saving settings (game scene: {0})", scene);
 
 			ConfigNode root = loadSettings();
-			ConfigNode toolbarsNode = root.getOrCreateNode("toolbars");
+			ConfigNode toolbarsNode = root.getOrCreateNode(ROOT_NODE);
 
 			ConfigNode sceneNode = toolbarsNode.getOrCreateNode(scene.ToString());
 			foreach (KeyValuePair<string, Toolbar> entry in toolbars) {
 				ConfigNode toolbarNode = sceneNode.getOrCreateNode(entry.Key);
 				entry.Value.saveSettings(toolbarNode);
 			}
-			root.Save(SETTINGS_FILE);
+			settings.Save();
 		}
 
 		private void onHideUI() {
@@ -263,8 +264,8 @@ namespace Toolbar {
 			toolbars.Remove(toolbarId);
 			toolbar.destroy();
 
-			if (settings.HasNode("toolbars")) {
-				ConfigNode toolbarsNode = settings.GetNode("toolbars");
+			if (settings.Node.HasNode(ROOT_NODE)) {
+				ConfigNode toolbarsNode = settings.Node.GetNode(ROOT_NODE);
 				string scene = gameScene.ToString();
 				if (toolbarsNode.HasNode(scene)) {
 					ConfigNode sceneNode = toolbarsNode.GetNode(scene);
