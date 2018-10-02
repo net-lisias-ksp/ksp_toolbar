@@ -35,4 +35,5 @@ using System.Runtime.InteropServices;
 //[assembly: AssemblyVersion("1.0.0.4")]
 //[assembly: AssemblyFileVersion("1.7.13.0")]
 
-[assembly: KSPAssembly("Toolbar", 1, 0)]
+[assembly: AssemblyVersion(Toolbar.Version.Number)]
+[assembly: KSPAssembly("Toolbar", Toolbar.Version.major, Toolbar.Version.minor)]

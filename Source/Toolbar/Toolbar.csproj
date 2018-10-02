@@ -37,11 +37,6 @@
     <Compile Include="API\FunctionVisibility.cs" />
     <Compile Include="API\IDrawable.cs" />
     <Compile Include="API\PopupMenuDrawable.cs" />
-    <Compile Include="AssemblyVersion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyVersion.tt</DependentUpon>
-    </Compile>
     <Compile Include="Internal\FloatCurveXY.cs" />
     <Compile Include="Internal\GUI\CursorGrabbing.cs" />
     <Compile Include="Internal\GUI\IconPickerDialog.cs" />
@@ -93,12 +88,11 @@
     <Compile Include="Internal\Toolbar\Toolbar.cs" />
     <Compile Include="API\ToolbarManager.cs" />
     <Compile Include="Internal\Utils.cs" />
+    <Compile Include="Properties\Version.cs">
+      <DependentUpon>Version.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AssemblyVersion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
-    </Content>
     <Content Include="CHANGES.txt" />
     <Content Include="etc\folder.png" />
     <Content Include="etc\MiniAVC.dll" />
@@ -116,6 +110,10 @@
     <None Include="etc\resize-cursor.psd" />
     <None Include="etc\toolbar-dropdown.psd" />
     <None Include="etc\update-available.psd" />
+    <None Include="Properties\Version.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Version.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
