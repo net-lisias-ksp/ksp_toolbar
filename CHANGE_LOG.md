@@ -1,5 +1,8 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0323: 1.7.17.2 (linuxgurugamer) for KSP 1.4.1
+	+ Added code to load textures manually, since Unity tries to compress them in the db
+	+ Disabled cursor switching on Linux only
 * 2018-0314: 1.7.17 (linuxgurugamer) for KSP 1.4.1
 	+ Updated for 1.4.1
 * 2017-1218: 1.7.16.5 (linuxgurugamer) for KSP 1.3
