@@ -30,6 +30,7 @@ using System.Text;
 using UnityEngine;
 
 using KSPe;
+using KSP.IO;
 
 namespace Toolbar {
 	[KSPAddonFixed(KSPAddon.Startup.EveryScene, true, typeof(ToolbarManager))]
@@ -188,8 +189,16 @@ namespace Toolbar {
 		}
 
 		private ConfigNode loadSettings() {
-			if (settings.IsLoadable)    settings.Load();
-			else				        settings.Save(new ConfigNode());
+			try
+			{
+				if (settings.IsLoadable) settings.Load();
+				else settings.Clear();
+			}
+			catch (Exception e) // Corrupted Savefile?
+			{
+				Log.error(e, "ToolbarManager.loadSettings: Recreating settings file due error.");
+				settings.Clear();
+			}
 			convertSettings();
 			return settings.Node;
 		}
@@ -205,7 +214,7 @@ namespace Toolbar {
 					foreach (ConfigNode sceneNode in toolbarNode.nodes) {
 						string scene = sceneNode.name;
 						ConfigNode newSceneNode = toolbarsNode.getOrCreateNode(scene);
-						ConfigNode newToolbarNode = newSceneNode.getOrCreateNode("toolbar");
+						ConfigNode newToolbarNode = newSceneNode.getOrCreateNode(ROOT_NODE);
 						foreach (ConfigNode.Value value in sceneNode.values) {
 							newToolbarNode.AddValue(value.name, value.value);
 						}
