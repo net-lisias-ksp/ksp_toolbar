@@ -1,5 +1,10 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2017-1213: 1.7.16.2 (linuxgurugamer) for KSP 1.3 PRE-RELEASE
+	+ Updated localization file
+	+ Split localizations into individual files
+	+ Updated About url
+	+ Updated check for correct path
 * 2017-1212: 1.7.16.1 (linuxgurugamer) for KSP 1.3 PRE-RELEASE
 	+ Moved localization directory into release directory
 * 2017-1212: 1.7.16.0 (linuxgurugamer) for KSP 1.3 PRE-RELEASE
