@@ -1,5 +1,7 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0504: 1.7.17.11 (linuxgurugamer) for KSP 1.4.1
+	+ Added Position and hover methods
 * 2018-0416: 1.7.17.10 (linuxgurugamer) for KSP 1.4.1
 	+ Fixed nullref when in the MissionBuilder
 * 2018-0415: 1.7.17.9 (linuxgurugamer) for KSP 1.4.1
