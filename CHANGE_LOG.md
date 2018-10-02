@@ -1,5 +1,8 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0327: 1.7.17.5 (linuxgurugamer) for KSP 1.4.1
+	+ Thanks to forum user @Jebs_SY, fixed an old, annoying but essentially harmless exception in the logs
+		- where the layout was changed between Layout and Repaint
 * 2018-0325: 1.7.17.4 (linuxgurugamer) for KSP 1.4.1
 	+ Added back support for textures loaded by mods and not from a file
 * 2018-0324: 1.7.17.3 (linuxgurugamer) for KSP 1.4.1
