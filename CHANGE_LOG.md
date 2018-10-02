@@ -1,5 +1,7 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0414: 1.7.17.7 (linuxgurugamer) for KSP 1.4.1
+	+ Updated .version info for 1.4.*
 * 2018-0414: 1.7.17.6 (linuxgurugamer) for KSP 1.4.1
 	+ Removed log spam when textures are loaded by mod and not from a file
 * 2018-0327: 1.7.17.5 (linuxgurugamer) for KSP 1.4.1
