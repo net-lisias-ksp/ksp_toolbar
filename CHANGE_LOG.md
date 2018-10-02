@@ -1,5 +1,7 @@
 # KSP Toolbar Plugin :: Change Log
 
+* 2018-0415: 1.7.17.9 (linuxgurugamer) for KSP 1.4.1
+	+ Fixed path check
 * 2018-0415: 1.7.17.8 (linuxgurugamer) for KSP 1.4.1
 	+ Fixed textures when file exists
 * 2018-0414: 1.7.17.7 (linuxgurugamer) for KSP 1.4.1
