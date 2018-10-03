@@ -160,24 +160,21 @@ namespace Toolbar {
 
 			bool checkForUpdates = true;
 
-			ConfigNode root = loadSettings();
-			if (root.HasNode(ROOT_NODE)) {
-				ConfigNode toolbarsNode = root.GetNode(ROOT_NODE);
-				Log.Level = (LogLevel) int.Parse(toolbarsNode.get("logLevel", ((int)
+			ConfigNode toolbarsNode = settings.Node;
+			Log.Level = (LogLevel) int.Parse(toolbarsNode.get("logLevel", ((int)
 #if DEBUG
-						LogLevel.INFO
+					LogLevel.INFO
 #else
-						LogLevel.WARN
+					LogLevel.WARN
 #endif
-					).ToString()));
-				checkForUpdates = toolbarsNode.get("checkForUpdates", true);
+				).ToString()));
+			checkForUpdates = toolbarsNode.get("checkForUpdates", true);
 
-				if (toolbarsNode.HasNode(scene.ToString())) {
-					ConfigNode sceneNode = toolbarsNode.GetNode(scene.ToString());
-					foreach (ConfigNode toolbarNode in sceneNode.nodes) {
-						Toolbar toolbar = addToolbar(toolbarNode.name);
-						toolbar.loadSettings(toolbarNode);
-					}
+			if (toolbarsNode.HasNode(scene.ToString())) {
+				ConfigNode sceneNode = toolbarsNode.GetNode(scene.ToString());
+				foreach (ConfigNode toolbarNode in sceneNode.nodes) {
+					Toolbar toolbar = addToolbar(toolbarNode.name);
+					toolbar.loadSettings(toolbarNode);
 				}
 			}
 
@@ -204,30 +201,27 @@ namespace Toolbar {
 		}
 
 		private void convertSettings() {
-			if (settings.Node.HasNode(ROOT_NODE)) {
-				ConfigNode toolbarsNode = settings.Node.GetNode(ROOT_NODE);
-				if (toolbarsNode.HasNode("toolbar")) {
-					ConfigNode toolbarNode = toolbarsNode.GetNode("toolbar");
+			ConfigNode toolbarsNode = settings.Node;
+			if (toolbarsNode.HasNode("toolbar")) {
+				ConfigNode toolbarNode = toolbarsNode.GetNode("toolbar");
 
-					Log.info("converting settings from old to new format");
+				Log.info("converting settings from old to new format");
 
-					foreach (ConfigNode sceneNode in toolbarNode.nodes) {
-						string scene = sceneNode.name;
-						ConfigNode newSceneNode = toolbarsNode.getOrCreateNode(scene);
-						ConfigNode newToolbarNode = newSceneNode.getOrCreateNode(ROOT_NODE);
-						foreach (ConfigNode.Value value in sceneNode.values) {
-							newToolbarNode.AddValue(value.name, value.value);
-						}
-						foreach (ConfigNode childNode in sceneNode.nodes) {
-							newToolbarNode.AddNode(childNode);
-						}
+				foreach (ConfigNode sceneNode in toolbarNode.nodes) {
+					string scene = sceneNode.name;
+					ConfigNode newSceneNode = toolbarsNode.getOrCreateNode(scene);
+					ConfigNode newToolbarNode = newSceneNode.getOrCreateNode(ROOT_NODE);
+					foreach (ConfigNode.Value value in sceneNode.values) {
+						newToolbarNode.AddValue(value.name, value.value);
 					}
-
-					toolbarsNode.RemoveNode("toolbar");
-
-					saveSettings(ToolbarGameScene.MAINMENU);
-					settings.Load();
+					foreach (ConfigNode childNode in sceneNode.nodes) {
+						newToolbarNode.AddNode(childNode);
+					}
 				}
+
+				toolbarsNode.RemoveNode("toolbar");
+
+				saveSettings(ToolbarGameScene.MAINMENU);
 			}
 		}
 
@@ -238,8 +232,7 @@ namespace Toolbar {
 		private void saveSettings(ToolbarGameScene scene) {
 			Log.info("saving settings (game scene: {0})", scene);
 
-			ConfigNode root = loadSettings();
-			ConfigNode toolbarsNode = root.getOrCreateNode(ROOT_NODE);
+			ConfigNode toolbarsNode = settings.Node;
 
 			ConfigNode sceneNode = toolbarsNode.getOrCreateNode(scene.ToString());
 			foreach (KeyValuePair<string, Toolbar> entry in toolbars) {
