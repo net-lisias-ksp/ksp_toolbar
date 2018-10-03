@@ -79,6 +79,7 @@ namespace Toolbar {
 				commands_ = new HashSet<Command>();
 				toolbars = new Dictionary<string, Toolbar>();
 
+				this.loadSettings();
 				loadSettings(ToolbarGameScene.MAINMENU);
 			} else {
 				Log.warn("ToolbarManager already running, marking this instance as stale");
@@ -266,15 +267,13 @@ namespace Toolbar {
 			toolbars.Remove(toolbarId);
 			toolbar.destroy();
 
-			if (settings.Node.HasNode(ROOT_NODE)) {
-				ConfigNode toolbarsNode = settings.Node.GetNode(ROOT_NODE);
-				string scene = gameScene.ToString();
-				if (toolbarsNode.HasNode(scene)) {
-					ConfigNode sceneNode = toolbarsNode.GetNode(scene);
-					if (sceneNode.HasNode(toolbarId)) {
-						sceneNode.RemoveNode(toolbarId);
-						saveSettings();
-					}
+			ConfigNode toolbarsNode = settings.Node;
+			string scene = gameScene.ToString();
+			if (toolbarsNode.HasNode(scene)) {
+				ConfigNode sceneNode = toolbarsNode.GetNode(scene);
+				if (sceneNode.HasNode(toolbarId)) {
+					sceneNode.RemoveNode(toolbarId);
+					saveSettings();
 				}
 			}
 		}
