@@ -6,7 +6,7 @@
 	"CHANGE_LOG_URL":"https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/CHANGES.md",
 	"GITHUB": {
 		"USERNAME": "net-lisias-kspu",
-		"REPOSITORY": "ksp_toolbar"
+		"REPOSITORY": "ksp_toolbar",
 		"ALLOW_PRE_RELEASE":false
 		},
 	"VERSION":{
