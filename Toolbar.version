@@ -1,9 +1,4 @@
 {
-	"GITHUB": {
-		"USERNAME": "net-lisias-kspu",
-		"REPOSITORY": "ksp_toolbar",
-		"ALLOW_PRE_RELEASE":false
-		},
 	"NAME"		: "Toolbar Unofficial",
 	"URL"		: "https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/ModuleManager.version",
 	"DOWNLOAD"	: "https://github.com/net-lisias-kspu/ksp_toolbar/releases",
@@ -17,7 +12,7 @@
 		},
 	"KSP_VERSION":{
 		"MAJOR":1,
-		"MINOR":4,
+		"MINOR":4
 		},
 	"KSP_VERSION_MIN":{
 		"MAJOR":1,
