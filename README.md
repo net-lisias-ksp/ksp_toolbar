@@ -5,9 +5,9 @@ Common API for GUI toolbars in KSP. Unofficial fork by Lisias.
 
 ## In a Hurry
 
-* [Releases](https://github.com/net-lisias-kspu/ksp_toolbar/tree/Archive)
-* [Source](https://github.com/net-lisias-kspu/ksp_toolbar)
 * [Latest Release](https://github.com/net-lisias-kspu/ksp_toolbar/releases)
+	+ [Binaries](https://github.com/net-lisias-kspu/ksp_toolbar/tree/Archive)
+* [Source](https://github.com/net-lisias-kspu/ksp_toolbar)
 * [Change Log](./CHANGE_LOG.md)
 
 
