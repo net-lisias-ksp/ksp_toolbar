@@ -1,14 +1,14 @@
 {
-	"NAME": 	"Toolbar Unofficial",
-	"URL":		"https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/ModuleManager.version",
-	"DOWNLOAD":	"https://github.com/net-lisias-kspu/ksp_toolbar/releases".
-	"CHANGE_LOG":	"https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/CHANGE_LOG.md",
-	"CHANGE_LOG_URL":"https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/CHANGES.md",
 	"GITHUB": {
 		"USERNAME": "net-lisias-kspu",
 		"REPOSITORY": "ksp_toolbar",
 		"ALLOW_PRE_RELEASE":false
 		},
+	"NAME"		: "Toolbar Unofficial",
+	"URL"		: "https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/ModuleManager.version",
+	"DOWNLOAD"	: "https://github.com/net-lisias-kspu/ksp_toolbar/releases",
+	"CHANGE_LOG"	: "https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/CHANGE_LOG.md",
+	"CHANGE_LOG_URL": "https://raw.githubusercontent.com/net-lisias-kspu/ksp_toolbar/master/CHANGES.md",
 	"VERSION":{
 		"MAJOR":1,
 		"MINOR":7,
