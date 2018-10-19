@@ -68,3 +68,6 @@
 
 1.7.17.11
 	Added Portugese trnaslation, thanks @Brendo102x
+
+1.7.17.12
+	Version bump for 1.5 rebuild
