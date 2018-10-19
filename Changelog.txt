@@ -71,3 +71,6 @@
 
 1.7.17.12
 	Version bump for 1.5 rebuild
+
+1.7.17.13
+	Version bump to fix .version file
