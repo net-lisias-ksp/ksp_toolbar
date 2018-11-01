@@ -47,6 +47,7 @@
 1.7.17.4
 	Added back support for textures loaded by mods and not from a file
 
+
 1.7.17.5
 	Thanks to forum user @Jebs_SY, fixed an old, annoying but essentially harmless exception in the logs
 		where the layout was changed between Layout and Repaint
@@ -74,3 +75,6 @@
 
 1.7.17.13
 	Version bump to fix .version file
+
+1.7.17.14
+	Thanks to github user @PiezPiedPy, fixes an exception which occurred before the MainMenu
