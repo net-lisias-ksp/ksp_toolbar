@@ -10,6 +10,7 @@ Common API for GUI toolbars in KSP. Unofficial fork by Lisias.
 * [Source](https://github.com/net-lisias-kspu/ksp_toolbar)
 * Documentation
         + [Project's README](https://github.com/net-lisias-kspu/ksp_toolbar/blob/master/README.md)
+        + [Install Instructions](https://github.com/net-lisias-kspu/ksp_toolbar/blob/master/INSTALL.md)
         + [Change Log](./CHANGE_LOG.md)
         + [TODO](./TODO.md) list
 
@@ -23,13 +24,7 @@ Third-party plugin authors may use the API to add their buttons to the toolbar.
 
 ## Installation
 
-To install, place the GameData folder inside your Kerbal Space Program folder. If asked to overwrite files, please do so.
-
-**REMOVE ANY OLD VERSIONS OF THE DLL BEFORE INSTALLING**.
-
-### Dependencies
-
-* [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions)
+Detailed installation instructions are now on its own file (see the [In a Hurry](#in-a-hurry) section) and on the distribution file.
 
 ### Licensing
 
