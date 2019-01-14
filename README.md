@@ -1,4 +1,4 @@
-# KSP Toolbar Plugin Unofficial
+# KSP Toolbar Plugin /L Unofficial
 
 Common API for GUI toolbars in KSP. Unofficial fork by Lisias.
 
@@ -8,7 +8,10 @@ Common API for GUI toolbars in KSP. Unofficial fork by Lisias.
 * [Latest Release](https://github.com/net-lisias-kspu/ksp_toolbar/releases)
 	+ [Binaries](https://github.com/net-lisias-kspu/ksp_toolbar/tree/Archive)
 * [Source](https://github.com/net-lisias-kspu/ksp_toolbar)
-* [Change Log](./CHANGE_LOG.md)
+* Documentation
+        + [Project's README](https://github.com/net-lisias-kspu/ksp_toolbar/blob/master/README.md)
+        + [Change Log](./CHANGE_LOG.md)
+        + [TODO](./TODO.md) list
 
 
 ## Description
