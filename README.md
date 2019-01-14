@@ -37,7 +37,9 @@ Detailed installation instructions are now on its own file (see the [In a Hurry]
 	+ Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 	+ Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
-See [here](./LICENSE)
+See [here](./LICENSE).
+
+Please note the copyrights and trademarks in [NOTICE](./NOTICE)
 
 
 ## UPSTREAM
