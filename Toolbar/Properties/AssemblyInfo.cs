@@ -36,3 +36,5 @@ using System.Runtime.InteropServices;
 //[assembly: AssemblyFileVersion("1.7.13.0")]
 
 [assembly: KSPAssembly("Toolbar", 1, 0)]
+//[assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 0)]
+[assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 7, 0)]

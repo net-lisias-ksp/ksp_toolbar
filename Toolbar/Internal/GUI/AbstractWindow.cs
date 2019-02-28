@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using ClickThroughFix;
 
 namespace Toolbar {
 	internal abstract class AbstractWindow {
@@ -74,7 +75,7 @@ namespace Toolbar {
 				GUIStyle = GUI.skin.window;
 			}
 
-			Rect = GUILayout.Window(id, AutoClampToScreen ? Rect.clampToScreen() : Rect, windowId => drawContentsInternal(), Title, GUIStyle, GUILayoutOptions);
+			Rect = ClickThruBlocker.GUILayoutWindow(id, AutoClampToScreen ? Rect.clampToScreen() : Rect, windowId => drawContentsInternal(), Title, GUIStyle, GUILayoutOptions);
 
 			editorLock.draw(Modal || Rect.Contains(Utils.getMousePosition()));
 		}
