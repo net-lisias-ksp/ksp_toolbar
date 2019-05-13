@@ -187,6 +187,7 @@ namespace Toolbar {
 
             if (LoadImageFromFile(ref tex, TexPathname(path)))
                 return tex;
+            UnityEngine.Object.Destroy(tex);
             return null;
         }
     }
