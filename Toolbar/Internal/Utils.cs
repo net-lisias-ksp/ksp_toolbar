@@ -176,10 +176,14 @@ namespace Toolbar {
             return s;
         }
 
-        internal static Texture2D GetTexture(string path, bool b)
+        internal static Texture2D GetTexture(string path, bool asNormalMap)
         {
+            // ask unBlur to look for the texture in GameDatabase, remove mipmaps if necessary, and return it
+            Texture2D tex = UnBlur.UnBlur.Instance?.GetTexture(path, asNormalMap);
+            if (tex != null) return tex;
 
-            Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
+            // texture not found in GameDatabase
+            tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
 
             if (LoadImageFromFile(ref tex, TexPathname(path)))
                 return tex;

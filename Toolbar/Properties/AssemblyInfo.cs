@@ -38,3 +38,4 @@ using System.Runtime.InteropServices;
 [assembly: KSPAssembly("Toolbar", 1, 0)]
 //[assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 0)]
 [assembly: KSPAssemblyDependency("ClickThroughBlocker", 1, 7, 0)]
+[assembly: KSPAssemblyDependency("unBlur", 0, 3)]
