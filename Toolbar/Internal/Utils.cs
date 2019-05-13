@@ -58,10 +58,11 @@ namespace Toolbar {
         // easier to specify different cases than to change case to lower.  This will fail on MacOS and Linux
         // if a suffix has mixed case
         static string[] imgSuffixes = new string[] { ".png", ".jpg", ".gif", ".PNG", ".JPG", ".GIF", ".dds", ".DDS" };
-        static Boolean LoadImageFromFile(ref Texture2D tex, String fileNamePath)
+        static Boolean LoadImageFromFile(out Texture2D tex, String fileNamePath)
         {
 
             Boolean blnReturn = false;
+            tex = null;
             bool dds = false;
             try
             {
@@ -110,7 +111,10 @@ namespace Toolbar {
                                 tex = LoadTextureDXT(bytes, tf);
                         }
                         else
+                        {
+                            tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
                             tex.LoadImage(System.IO.File.ReadAllBytes(path));
+                        }
                         blnReturn = true;
                     }
                     catch (Exception ex)
@@ -183,12 +187,8 @@ namespace Toolbar {
             if (tex != null) return tex;
 
             // texture not found in GameDatabase
-            tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
-
-            if (LoadImageFromFile(ref tex, TexPathname(path)))
-                return tex;
-            UnityEngine.Object.Destroy(tex);
-            return null;
+            LoadImageFromFile(out tex, TexPathname(path));
+            return tex;
         }
     }
 }
