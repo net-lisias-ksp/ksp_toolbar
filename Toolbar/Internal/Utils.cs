@@ -114,18 +114,14 @@ namespace Toolbar {
             }
             return blnReturn;
         }
-        internal static bool TextureExists(string fileNamePath)
+        internal static bool TextureExists(string texturePath)
         {
-            string path = fileNamePath;
-            if (!System.IO.File.Exists(fileNamePath))
-            {
-                // Look for the file with an appended suffix.
-                for (int i = 0; i < imgSuffixes.Length; i++)
-
-                    if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
-                        return true;
-
-            }
+            if (GameDatabase.Instance.ExistsTexture(texturePath))
+                return true;
+            string fileNamePath = TexPathname(texturePath);
+            for (int i = 0; i < imgSuffixes.Length; i++)
+                if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
+                    return true;
             return false;
         }
         internal static string TexPathname(string path)
