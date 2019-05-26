@@ -24,14 +24,10 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 using System;
-using System.IO;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using DDSHeaders;
-
 
 namespace Toolbar {
 	internal static class Utils {
@@ -58,10 +54,11 @@ namespace Toolbar {
         // easier to specify different cases than to change case to lower.  This will fail on MacOS and Linux
         // if a suffix has mixed case
         static string[] imgSuffixes = new string[] { ".png", ".jpg", ".gif", ".PNG", ".JPG", ".GIF", ".dds", ".DDS" };
-        static Boolean LoadImageFromFile(ref Texture2D tex, String fileNamePath)
+        static Boolean LoadImageFromFile(out Texture2D tex, String fileNamePath)
         {
 
             Boolean blnReturn = false;
+            tex = null;
             bool dds = false;
             try
             {
@@ -86,31 +83,15 @@ namespace Toolbar {
                     {
                         if (dds)
                         {
-                            byte[] bytes = System.IO.File.ReadAllBytes(path);
-
-                            BinaryReader binaryReader = new BinaryReader(new MemoryStream(bytes));
-                            uint num = binaryReader.ReadUInt32();
-
-                            if (num != DDSValues.uintMagic)
-                            {
-                                UnityEngine.Debug.LogError("DDS: File is not a DDS format file!");
-                                return false;
-                            }
-                            DDSHeader ddSHeader = new DDSHeader(binaryReader);
-
-                            TextureFormat tf = TextureFormat.Alpha8;
-                            if (ddSHeader.ddspf.dwFourCC == DDSValues.uintDXT1)
-                                tf = TextureFormat.DXT1;
-                            if (ddSHeader.ddspf.dwFourCC == DDSValues.uintDXT5)
-                                tf = TextureFormat.DXT5;
-                            if (tf == TextureFormat.Alpha8)
-                                return false;
-
-
-                                tex = LoadTextureDXT(bytes, tf);
+                            tex = UnBlur.UnBlur.LoadDDS(path, false);
+                            if (tex == null)
+                                throw new Exception("LoadDDS failed.");
                         }
                         else
+                        {
+                            tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
                             tex.LoadImage(System.IO.File.ReadAllBytes(path));
+                        }
                         blnReturn = true;
                     }
                     catch (Exception ex)
@@ -133,40 +114,14 @@ namespace Toolbar {
             }
             return blnReturn;
         }
-        public static Texture2D LoadTextureDXT(byte[] ddsBytes, TextureFormat textureFormat)
+        internal static bool TextureExists(string texturePath)
         {
-            if (textureFormat != TextureFormat.DXT1 && textureFormat != TextureFormat.DXT5)
-                throw new Exception("Invalid TextureFormat. Only DXT1 and DXT5 formats are supported by this method.");
-
-            byte ddsSizeCheck = ddsBytes[4];
-            if (ddsSizeCheck != 124)
-                throw new Exception("Invalid DDS DXTn texture. Unable to read");  //this header byte should be 124 for DDS image files
-
-            int height = ddsBytes[13] * 256 + ddsBytes[12];
-            int width = ddsBytes[17] * 256 + ddsBytes[16];
-
-            int DDS_HEADER_SIZE = 128;
-            byte[] dxtBytes = new byte[ddsBytes.Length - DDS_HEADER_SIZE];
-            Buffer.BlockCopy(ddsBytes, DDS_HEADER_SIZE, dxtBytes, 0, ddsBytes.Length - DDS_HEADER_SIZE);
-
-            Texture2D texture = new Texture2D(width, height, textureFormat, false);
-            texture.LoadRawTextureData(dxtBytes);
-            texture.Apply();
-
-            return (texture);
-        }
-        internal static bool TextureExists(string fileNamePath)
-        {
-            string path = fileNamePath;
-            if (!System.IO.File.Exists(fileNamePath))
-            {
-                // Look for the file with an appended suffix.
-                for (int i = 0; i < imgSuffixes.Length; i++)
-
-                    if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
-                        return true;
-
-            }
+            if (GameDatabase.Instance.ExistsTexture(texturePath))
+                return true;
+            string fileNamePath = TexPathname(texturePath);
+            for (int i = 0; i < imgSuffixes.Length; i++)
+                if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
+                    return true;
             return false;
         }
         internal static string TexPathname(string path)
@@ -176,14 +131,15 @@ namespace Toolbar {
             return s;
         }
 
-        internal static Texture2D GetTexture(string path, bool b)
+        internal static Texture2D GetTexture(string path, bool asNormalMap)
         {
+            // ask unBlur to look for the texture in GameDatabase, remove mipmaps if necessary, and return it
+            Texture2D tex = UnBlur.UnBlur.Instance?.GetTexture(path, asNormalMap);
+            if (tex != null) return tex;
 
-            Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
-
-            if (LoadImageFromFile(ref tex, TexPathname(path)))
-                return tex;
-            return null;
+            // texture not found in GameDatabase
+            LoadImageFromFile(out tex, TexPathname(path));
+            return tex;
         }
     }
 }
