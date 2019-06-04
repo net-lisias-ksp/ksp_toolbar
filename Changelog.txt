@@ -79,3 +79,8 @@
 1.7.18
 	Minor change to add the ClickThroughBlocker
 	Added ClickThroughBlocker as a hard dependency
+
+1.7.19
+	Added unblur as a hard dependency
+	Thanks to (github: @Cake-Pie, KSP: cakepie) for changes to both fix blurring and needless reading of the disk
+	Removed the version check

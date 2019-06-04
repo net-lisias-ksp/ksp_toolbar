@@ -23,6 +23,8 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
+#if false
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,6 +37,7 @@ namespace Toolbar {
 	[KSPAddonFixed(KSPAddon.Startup.MainMenu, true, typeof(InstallChecker))]
 	internal class InstallChecker : MonoBehaviour {
 		internal void Start() {
+            
 			string executingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 			IEnumerable<AssemblyLoader.LoadedAssembly> assemblies = AssemblyLoader.loadedAssemblies
 					.Where(a => (a.assembly.GetName().Name == executingAssemblyName) && (a.url != "000_Toolbar/Plugins"));
@@ -54,3 +57,5 @@ namespace Toolbar {
 		}
 	}
 }
+
+#endif
