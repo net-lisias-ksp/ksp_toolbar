@@ -84,3 +84,6 @@
 	Added unblur as a hard dependency
 	Thanks to (github: @Cake-Pie, KSP: cakepie) for changes to both fix blurring and needless reading of the disk
 	Removed the version check
+
+1.7.19.1
+	Minor update to version file
