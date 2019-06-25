@@ -1,14 +1,4 @@
-1.7.17.3
-	Added dds to the file types to look for in icon image files
 
-1.7.17.2
-	Disabled cursor switching on Linux only
-
-1.7.17.1
-	Added code to load textures manually, since Unity tries to compress them in the db
-
-1.7.17
-	Updated for 1.4.1
 
 1.7.15
 	Adoption by LGG
@@ -41,11 +31,19 @@
 1.7.17
 	Updated for 1.4.1
 
+1.7.17.1
+	Added code to load textures manually, since Unity tries to compress them in the db
+
+1.7.17.2
+	Disabled cursor switching on Linux only
+
 1.7.17.3
+	Added dds to the file types to look for in icon image files
 	Fixed fuzzy buttons
 
 1.7.17.4
 	Added back support for textures loaded by mods and not from a file
+
 
 1.7.17.5
 	Thanks to forum user @Jebs_SY, fixed an old, annoying but essentially harmless exception in the logs
@@ -68,3 +66,24 @@
 
 1.7.17.11
 	Added Portugese trnaslation, thanks @Brendo102x
+
+1.7.17.12
+	Version bump for 1.5 rebuild
+
+1.7.17.13
+	Version bump to fix .version file
+
+1.7.17.14
+	Thanks to github user @PiezPiedPy, fixes an exception which occurred before the MainMenu
+
+1.7.18
+	Minor change to add the ClickThroughBlocker
+	Added ClickThroughBlocker as a hard dependency
+
+1.7.19
+	Added unblur as a hard dependency
+	Thanks to (github: @Cake-Pie, KSP: cakepie) for changes to both fix blurring and needless reading of the disk
+	Removed the version check
+
+1.7.19.1
+	Minor update to version file
