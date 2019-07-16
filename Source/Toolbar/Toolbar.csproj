@@ -45,11 +45,13 @@
     <Compile Include="Internal\GUI\AbstractWindow.cs" />
     <Compile Include="Internal\GUI\IPopupMenuOption.cs" />
     <Compile Include="Internal\Log.cs" />
+    <Compile Include="Internal\TextureScale.cs" />
     <Compile Include="Internal\Toolbar\Button.cs" />
     <Compile Include="API\ClickEvent.cs" />
     <Compile Include="API\ClickHandler.cs" />
     <Compile Include="Internal\Toolbar\CommandCreationCounter.cs" />
     <Compile Include="Internal\Toolbar\PopupMenuDrawable.cs" />
+    <Compile Include="Internal\Toolbar\ScaleButtons.cs" />
     <Compile Include="Internal\Toolbar\VisibleButtonsSelector.cs" />
     <Compile Include="Internal\Toolbar\ClickEvent.cs" />
     <Compile Include="Internal\GUI\ConfirmDialog.cs" />

@@ -84,6 +84,27 @@ namespace Toolbar {
 		}
 
 		/// <summary>
+		/// The path of a big texture file to display an icon on the button. Used when configured size is other than
+		/// the size of TexturePath
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// The texture path must be relative to the "GameData" directory, and must not specify a file name suffix.
+		/// Valid example: MyAddon/Textures/icon_mybutton
+		/// </para>
+		/// <para>
+		/// The texture path can be changed at any time to modify the button's appearance.
+		/// </para>
+		/// </remarks>
+		/// <seealso cref="Text"/>
+		string BigTexturePath
+		{
+			set;
+			get;
+		}
+
+
+		/// <summary>
 		/// The button's tool tip text. Set to null if no tool tip is desired.
 		/// </summary>
 		/// <remarks>
@@ -183,7 +204,7 @@ namespace Toolbar {
 		/// <code>
 		/// IButton button = ...
 		/// button.OnClick += (e) => {
-		///     Debug.Log("button clicked, mouseButton: " + e.MouseButton);
+		///		Debug.Log("button clicked, mouseButton: " + e.MouseButton);
 		/// };
 		/// </code>
 		/// </example>
@@ -196,7 +217,7 @@ namespace Toolbar {
 		/// <code>
 		/// IButton button = ...
 		/// button.OnMouseEnter += (e) => {
-		///     Debug.Log("mouse entered button");
+		///		Debug.Log("mouse entered button");
 		/// };
 		/// </code>
 		/// </example>
@@ -209,15 +230,15 @@ namespace Toolbar {
 		/// <code>
 		/// IButton button = ...
 		/// button.OnMouseLeave += (e) => {
-		///     Debug.Log("mouse left button");
+		///		Debug.Log("mouse left button");
 		/// };
 		/// </code>
 		/// </example>
 		event MouseLeaveHandler OnMouseLeave;
 
-        bool IsHovering {
-            get;
-        }
+		bool IsHovering {
+			get;
+		}
 
 		/// <summary>
 		/// Permanently destroys this button so that it is no longer displayed.

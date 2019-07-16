@@ -62,7 +62,7 @@ namespace Toolbar {
 
 		internal event Action OnCommandAdded;
 
-		private Dictionary<string, Toolbar> toolbars;
+		internal Dictionary<string, Toolbar> toolbars;
 		private readonly PluginConfig settings = PluginConfig.ForType<Toolbar>(ROOT_NODE, "settings.cfg");
 		private bool running = true;
 		private ToolbarGameScene gameScene = ToolbarGameScene.LOADING;
