@@ -83,13 +83,34 @@ namespace Toolbar {
 			get;
 		}
 
-		/// <summary>
-		/// The button's tool tip text. Set to null if no tool tip is desired.
-		/// </summary>
-		/// <remarks>
-		/// Tool Tip Text Should Always Use Headline Style Like This.
-		/// </remarks>
-		string ToolTip {
+        /// <summary>
+        /// The path of a big texture file to display an icon on the button. Used when configured size is other than
+        /// the size of TexturePath
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The texture path must be relative to the "GameData" directory, and must not specify a file name suffix.
+        /// Valid example: MyAddon/Textures/icon_mybutton
+        /// </para>
+        /// <para>
+        /// The texture path can be changed at any time to modify the button's appearance.
+        /// </para>
+        /// </remarks>
+        /// <seealso cref="Text"/>
+        string BigTexturePath
+        {
+            set;
+            get;
+        }
+
+
+        /// <summary>
+        /// The button's tool tip text. Set to null if no tool tip is desired.
+        /// </summary>
+        /// <remarks>
+        /// Tool Tip Text Should Always Use Headline Style Like This.
+        /// </remarks>
+        string ToolTip {
 			set;
 			get;
 		}

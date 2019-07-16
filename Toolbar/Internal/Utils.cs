@@ -45,6 +45,10 @@ namespace Toolbar {
 			}
 		}
 
+        static Texture2D GetDDSViaUnBlur(string path)
+        {
+            return UnBlur.UnBlur.LoadDDS(path, false);
+        }
         //
         // The following function was initially copied from @JPLRepo's AmpYear mod, which is covered by the GPL, as is this mod
         //
@@ -81,13 +85,20 @@ namespace Toolbar {
                 {
                     try
                     {
-                        if (dds)
+                        if (UnblurCheck.unBlurPresent)
                         {
-                            tex = UnBlur.UnBlur.LoadDDS(path, false);
-                            if (tex == null)
-                                throw new Exception("LoadDDS failed.");
-                        }
-                        else
+                            if (dds)
+                            {
+                                tex = GetDDSViaUnBlur(path);
+                                if (tex == null)
+                                    throw new Exception("LoadDDS failed.");
+                            }
+                            else
+                            {
+                                tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
+                                tex.LoadImage(System.IO.File.ReadAllBytes(path));
+                            }
+                        } else
                         {
                             tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
                             tex.LoadImage(System.IO.File.ReadAllBytes(path));
@@ -131,11 +142,19 @@ namespace Toolbar {
             return s;
         }
 
+        internal static Texture2D GetTextureViaUnBlur(string path, bool asNormalMap)
+        {
+            return UnBlur.UnBlur.Instance?.GetTexture(path, asNormalMap);
+        }
         internal static Texture2D GetTexture(string path, bool asNormalMap)
         {
-            // ask unBlur to look for the texture in GameDatabase, remove mipmaps if necessary, and return it
-            Texture2D tex = UnBlur.UnBlur.Instance?.GetTexture(path, asNormalMap);
-            if (tex != null) return tex;
+            Texture2D tex;
+            if (UnblurCheck.unBlurPresent)
+            {
+                // ask unBlur to look for the texture in GameDatabase, remove mipmaps if necessary, and return it
+                tex = GetTextureViaUnBlur(path, asNormalMap);
+                if (tex != null) return tex;
+            }
 
             // texture not found in GameDatabase
             LoadImageFromFile(out tex, TexPathname(path));

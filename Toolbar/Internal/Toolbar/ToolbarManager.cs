@@ -59,7 +59,7 @@ namespace Toolbar {
 
 		internal event Action OnCommandAdded;
 
-		private Dictionary<string, Toolbar> toolbars;
+		internal Dictionary<string, Toolbar> toolbars;
 		private ConfigNode settings;
 		private bool running = true;
 		private ToolbarGameScene gameScene = ToolbarGameScene.LOADING;

@@ -28,7 +28,7 @@ class TestButtons : MonoBehaviour {
 		button1.TexturePath = "000_Toolbar/img_buttonTypeMNode";
 		button1.ToolTip = "Toggle This Button's Icon";
 		button1.OnClick += (e) => {
-			Debug.Log("button1 clicked, mouseButton: " + e.MouseButton);
+			//Debug.Log("button1 clicked, mouseButton: " + e.MouseButton);
 			button1.TexturePath = state1 ? "000_Toolbar/img_buttonTypeMNode" : "000_Toolbar/icon";
 			state1 = !state1;
 		};
@@ -38,7 +38,7 @@ class TestButtons : MonoBehaviour {
 		button2.TexturePath = "000_Toolbar/img_buttonTypeMNode";
 		button2.ToolTip = "Disabled Button";
 		button2.Enabled = false;
-		button2.OnClick += (e) => Debug.Log("button2 clicked");
+		//button2.OnClick += (e) => Debug.Log("button2 clicked");
 
 		// important button
 		button3 = ToolbarManager.Instance.add("test", "button3");
@@ -46,7 +46,7 @@ class TestButtons : MonoBehaviour {
 		button3.ToolTip = "Toggle This Button's Importance";
 		button3.Important = true;
 		button3.OnClick += (e) => {
-			Debug.Log("button3 clicked");
+			//Debug.Log("button3 clicked");
 			button3.Important = !button3.Important;
 		};
 		
@@ -54,37 +54,37 @@ class TestButtons : MonoBehaviour {
 		button4 = ToolbarManager.Instance.add("test", "button4");
 		button4.TexturePath = "000_Toolbar/img_buttonTypeMNode";
 		button4.ToolTip = "Regular Button";
-		button4.OnClick += (e) => Debug.Log("button4 clicked");
-		button4.OnMouseEnter += (e) => Debug.Log("button4 mouse enter");
-		button4.OnMouseLeave += (e) => Debug.Log("button4 mouse leave");
+		//button4.OnClick += (e) => Debug.Log("button4 clicked");
+		//button4.OnMouseEnter += (e) => Debug.Log("button4 mouse enter");
+		//button4.OnMouseLeave += (e) => Debug.Log("button4 mouse leave");
 
 		// button that toggles visibility of the previous button
 		button5 = ToolbarManager.Instance.add("test", "button5");
 		button5.TexturePath = "000_Toolbar/icon";
 		button5.ToolTip = "Toggle Previous Button's Visibility";
 		button5.OnClick += (e) => button4.Visible = !button4.Visible;
-		button5.OnClick += (e) => Debug.Log("button5 clicked");
+		//button5.OnClick += (e) => Debug.Log("button5 clicked");
 
 		// button that is only visible in the editors
 		button6 = ToolbarManager.Instance.add("test", "button6");
 		button6.TexturePath = "000_Toolbar/img_buttonTypeMNode";
 		button6.ToolTip = "Button Visible Only in Editors";
 		button6.Visibility = new GameScenesVisibility(GameScenes.EDITOR);
-		button6.OnClick += (e) => Debug.Log("button6 clicked");
+		//button6.OnClick += (e) => Debug.Log("button6 clicked");
 
 		// button that is only visible in the flight scene and flight map
 		button7 = ToolbarManager.Instance.add("test", "button7");
 		button7.TexturePath = "000_Toolbar/icon";
 		button7.ToolTip = "Button Visible Only in Flight Scene";
 		button7.Visibility = new GameScenesVisibility(GameScenes.FLIGHT);
-		button7.OnClick += (e) => Debug.Log("button7 clicked");
+		//button7.OnClick += (e) => Debug.Log("button7 clicked");
 
 		// button that is only visible in the flight map
 		button8 = ToolbarManager.Instance.add("test", "button8");
 		button8.TexturePath = "000_Toolbar/icon";
 		button8.ToolTip = "Button Visible Only in Flight Map";
 		button8.Visibility = FlightMapVisibility.Instance;
-		button8.OnClick += (e) => Debug.Log("button8 clicked");
+		//button8.OnClick += (e) => Debug.Log("button8 clicked");
 
 		// button that opens a popup menu on click
 		button9 = ToolbarManager.Instance.add("test", "button9");
@@ -152,12 +152,12 @@ class TestButtons : MonoBehaviour {
 
 		// create menu options
 		IButton option1 = menu.AddOption("Option 1");
-		option1.OnClick += (e2) => Debug.Log("menu option 1 clicked");
+		//option1.OnClick += (e2) => Debug.Log("menu option 1 clicked");
 		IButton option2 = menu.AddOption("Option 2");
-		option2.OnClick += (e2) => Debug.Log("menu option 2 clicked");
+		//option2.OnClick += (e2) => Debug.Log("menu option 2 clicked");
 		menu.AddSeparator();
 		IButton option3 = menu.AddOption("Option 3");
-		option3.OnClick += (e2) => Debug.Log("menu option 3 clicked");
+		//option3.OnClick += (e2) => Debug.Log("menu option 3 clicked");
 
 		// auto-close popup menu when any option is clicked
 		menu.OnAnyOptionClicked += () => destroyPopupMenu(button);

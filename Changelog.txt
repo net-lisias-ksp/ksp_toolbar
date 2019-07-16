@@ -87,3 +87,13 @@
 
 1.7.19.1
 	Minor update to version file
+
+1.7.20
+	Re-enabled the InstallChecker
+	Added button scaling (currently on a per-screen basis)
+	Added BigTexturePath for larger icons (better resolution)
+	Added window to control scaling
+	Added scaling to go along with the stock UI and stock UI APP scaling
+	Removed the hard dependency on the unBlur mod.  It will use the unBlur if it's here, otherwise will read the file
+
+

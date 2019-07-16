@@ -66,8 +66,35 @@ namespace Toolbar {
 			}
 		}
 
-		private string texturePath_;
-		public string TexturePath {
+
+        private string texturePath_;
+        public string TexturePath
+        {
+            set
+            {
+                if (!destroyed)
+                {
+                    if ((value != null) && value.Contains('\\'))
+                    {
+                        throw new ArgumentException("texture path must use forward slash instead of backslash: " + value);
+                    }
+
+                    if (!string.Equals(texturePath_, value))
+                    {
+                        texturePath_ = value;
+
+                        fireChange();
+                    }
+                }
+            }
+            get
+            {
+                return texturePath_;
+            }
+        }
+
+        private string bigTexturePath_;
+		public string BigTexturePath {
 			set {
 				if (!destroyed) {
 					if ((value != null) && value.Contains('\\')) {
@@ -75,14 +102,14 @@ namespace Toolbar {
 					}
 
 					if (!string.Equals(texturePath_, value)) {
-						texturePath_ = value;
+                        bigTexturePath_ = value;
 
 						fireChange();
 					}
 				}
 			}
 			get {
-				return texturePath_;
+				return bigTexturePath_;
 			}
 		}
 
