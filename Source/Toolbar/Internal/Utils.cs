@@ -57,10 +57,10 @@ namespace Toolbar {
         //
         // easier to specify different cases than to change case to lower.  This will fail on MacOS and Linux
         // if a suffix has mixed case
-        static string[] imgSuffixes = new string[] { ".png", ".jpg", ".gif", ".PNG", ".JPG", ".GIF", ".dds", ".DDS" };
-        static Boolean LoadImageFromFile(ref Texture2D tex, String fileNamePath)
+        internal static string[] imgSuffixes = new string[] { ".png", ".jpg", ".gif", ".dds", ".PNG", ".JPG", ".GIF", ".DDS" };
+        internal static Boolean LoadImageFromFile(out Texture2D tex, String fileNamePath)
         {
-
+            tex = null;
             Boolean blnReturn = false;
             bool dds = false;
             try
@@ -105,34 +105,38 @@ namespace Toolbar {
                                 tf = TextureFormat.DXT5;
                             if (tf == TextureFormat.Alpha8)
                                 return false;
-
-
-                                tex = LoadTextureDXT(bytes, tf);
+                            tex = LoadTextureDXT(bytes, tf);
                         }
                         else
-                            tex.LoadImage(System.IO.File.ReadAllBytes(path));
+						{
+							tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
+							tex.LoadImage(System.IO.File.ReadAllBytes(path));
+						}
                         blnReturn = true;
                     }
                     catch (Exception ex)
                     {
-                        Log.error("Failed to load the texture:" + path);
-                        Log.error(ex.Message);
+						Log.error("Failed to load the texture:" + path);
+						Log.error(ex.Message);
                     }
                 }
                 else
                 {
                     Log.error("Cannot find texture to load:" + fileNamePath);
                 }
-
-
             }
             catch (Exception ex)
             {
                 Log.error("Failed to load (are you missing a file):" + fileNamePath);
                 Log.error(ex.Message);
             }
+
+            // Preventing a memory leak
+            if (!blnReturn && null != tex) UnityEngine.Object.Destroy(tex);
+
             return blnReturn;
         }
+
         public static Texture2D LoadTextureDXT(byte[] ddsBytes, TextureFormat textureFormat)
         {
             if (textureFormat != TextureFormat.DXT1 && textureFormat != TextureFormat.DXT5)
@@ -155,20 +159,18 @@ namespace Toolbar {
 
             return (texture);
         }
-        internal static bool TextureExists(string fileNamePath)
-        {
-            string path = fileNamePath;
-            if (!System.IO.File.Exists(fileNamePath))
-            {
-                // Look for the file with an appended suffix.
-                for (int i = 0; i < imgSuffixes.Length; i++)
 
-                    if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
-                        return true;
+		internal static bool TextureExists(string texturePath)
+		{
+			if (GameDatabase.Instance.ExistsTexture(texturePath))
+				return true;
+			string fileNamePath = TexPathname(texturePath);
+			for (int i = 0; i < imgSuffixes.Length; ++i)
+				if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
+					return true;
+			return false;
+		}
 
-            }
-            return false;
-        }
         internal static string TexPathname(string path)
         {
             string s =  KSPUtil.ApplicationRootPath + "GameData/" + path;
@@ -176,14 +178,16 @@ namespace Toolbar {
             return s;
         }
 
-        internal static Texture2D GetTexture(string path, bool b)
+        internal static Texture2D GetTexture(string path, bool mipmap)
         {
+			if (!Utils.TextureExists(Utils.TexPathname(path)))
+				return GameDatabase.Instance.GetTexture(path, false);
 
-            Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
+			if (LoadImageFromFile(out Texture2D tex, TexPathname(path)))
+				return tex;
 
-            if (LoadImageFromFile(ref tex, TexPathname(path)))
-                return tex;
-            return null;
+			UnityEngine.Object.Destroy(tex);
+			return null;
         }
     }
 }
