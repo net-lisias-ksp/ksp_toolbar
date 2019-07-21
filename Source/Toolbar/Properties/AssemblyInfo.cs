@@ -38,4 +38,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion(Toolbar.Version.Number)]
 [assembly: KSPAssembly("Toolbar", Toolbar.Version.major, Toolbar.Version.minor)]
 
-[assembly: KSPAssemblyDependency("KSPe", 2, 0)]
+[assembly: KSPAssemblyDependency("KSPe", 2, 1)]
+[assembly: KSPAssemblyDependency("KSPe.UI", 2, 1)]
+
