@@ -26,17 +26,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
-using KSPe;
-using KSP.IO;
+using Data = KSPe.IO.Data;
 
 namespace Toolbar {
 	[KSPAddonFixed(KSPAddon.Startup.EveryScene, true, typeof(ToolbarManager))]
 	public partial class ToolbarManager : MonoBehaviour, IToolbarManager {
 		private  const string ROOT_NODE = "toolbars";
-		internal const string FORUM_THREAD_URL = "https://forum.kerbalspaceprogram.com/index.php?/topic/161857-131-toolbar-continued";
+		internal const string FORUM_THREAD_URL = "http://ksp.lisias.net/add-ons/Unofficial-Initiative";
 		internal const string NAMESPACE_INTERNAL = "__TOOLBAR_INTERNAL";
 
 		internal static ToolbarManager InternalInstance;
@@ -63,7 +61,7 @@ namespace Toolbar {
 		internal event Action OnCommandAdded;
 
 		internal Dictionary<string, Toolbar> toolbars;
-		private readonly PluginConfig settings = PluginConfig.ForType<Toolbar>(ROOT_NODE, "settings.cfg");
+		private readonly Data.ConfigNode settings = Data.ConfigNode.ForType<Toolbar>(ROOT_NODE, "settings.cfg");
 		private bool running = true;
 		private ToolbarGameScene gameScene = ToolbarGameScene.LOADING;
 		private bool uiHidden;
