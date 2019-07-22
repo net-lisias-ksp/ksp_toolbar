@@ -163,11 +163,11 @@ namespace Toolbar {
 			bool checkForUpdates = true;
 
 			ConfigNode toolbarsNode = settings.Node;
-			Log.Level = (LogLevel) int.Parse(toolbarsNode.get("logLevel", ((int)
+			Log.Level = int.Parse(toolbarsNode.get("logLevel", ((int)
 #if DEBUG
-					LogLevel.INFO
+					Log.LEVEL.TRACE
 #else
-					LogLevel.WARN
+					Log.LEVEL.INFO
 #endif
 				).ToString()));
 			checkForUpdates = toolbarsNode.get("checkForUpdates", true);
