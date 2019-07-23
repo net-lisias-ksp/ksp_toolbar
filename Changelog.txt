@@ -78,7 +78,6 @@
 
 1.7.18
 	Minor change to add the ClickThroughBlocker
-	Added ClickThroughBlocker as a hard dependency
 
 1.7.19
 	Added unblur as a hard dependency

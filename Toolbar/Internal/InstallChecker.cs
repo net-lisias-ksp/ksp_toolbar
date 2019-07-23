@@ -23,7 +23,10 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 789fbf3...  Added unblur as a hard dependency
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +39,6 @@ namespace Toolbar {
 	[KSPAddonFixed(KSPAddon.Startup.MainMenu, true, typeof(InstallChecker))]
 	internal class InstallChecker : MonoBehaviour {
 		internal void Start() {
-            
 			string executingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 			IEnumerable<AssemblyLoader.LoadedAssembly> assemblies = AssemblyLoader.loadedAssemblies
 					.Where(a => (a.assembly.GetName().Name == executingAssemblyName) && (a.url != "000_Toolbar/Plugins"));
@@ -55,15 +57,4 @@ namespace Toolbar {
 			}
 		}
 	}
-
-    [KSPAddon(KSPAddon.Startup.Instantly, true)]
-    public class UnblurCheck : MonoBehaviour
-    {
-        public static bool unBlurPresent = false;
-
-        void Start()
-        {
-            unBlurPresent = AssemblyLoader.loadedAssemblies.Any(a => a.assembly.GetName().Name == "unBlur");
-        }
-    }
 }
