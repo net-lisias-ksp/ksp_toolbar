@@ -49,10 +49,7 @@ namespace Toolbar {
 			}
 		}
 
-        static Texture2D GetDDSViaUnBlur(string path)
-        {
-            return UnBlur.UnBlur.LoadDDS(path, false);
-        }
+
         //
         // The following function was initially copied from @JPLRepo's AmpYear mod, which is covered by the GPL, as is this mod
         //
@@ -88,7 +85,7 @@ namespace Toolbar {
                 {
                     try
                     {
-                        if (UnblurCheck.unBlurPresent)
+                        if (dds)
                         {
                             byte[] bytes = System.IO.File.ReadAllBytes(path);
 

@@ -95,4 +95,6 @@
 	Added scaling to go along with the stock UI and stock UI APP scaling
 	Removed the hard dependency on the unBlur mod.  It will use the unBlur if it's here, otherwise will read the file
 
+1.7.21
+	Removed UnBlur entirely
 
