@@ -143,9 +143,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>R:\KSP_1.7.2_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="unBlur">
-      <HintPath>R:\KSP_1.6.1_dev\GameData\unBlur.0.4.0.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
