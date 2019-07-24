@@ -97,4 +97,5 @@
 
 1.7.21
 	Removed UnBlur entirely
+	Fixes purple buttons
 
