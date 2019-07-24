@@ -63,7 +63,7 @@ namespace Toolbar {
         {
 
             Boolean blnReturn = false;
-            bool dds = false;
+            bool isDDS = false;
             try
             {
                 string path = fileNamePath;
@@ -75,7 +75,7 @@ namespace Toolbar {
                         if (System.IO.File.Exists(fileNamePath + imgSuffixes[i]))
                         {
                             path = fileNamePath + imgSuffixes[i];
-                            dds = imgSuffixes[i] == ".dds" || imgSuffixes[i] == ".DDS";
+                            isDDS = imgSuffixes[i] == ".dds" || imgSuffixes[i] == ".DDS";
                             break;
                         }
                 }
@@ -85,7 +85,7 @@ namespace Toolbar {
                 {
                     try
                     {
-                        if (dds)
+                        if (isDDS)
                         {
                             byte[] bytes = System.IO.File.ReadAllBytes(path);
 
