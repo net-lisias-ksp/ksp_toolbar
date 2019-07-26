@@ -99,3 +99,9 @@
 	Removed UnBlur entirely
 	Fixes purple buttons
 
+1.7.22
+	Fixed purple buttons from mods which add textures to the game database at runtime without a file (looking at [x]Science!)
+	Optimized the Texture code a bit to eliminate duplicated code
+	Changed resize from Bilinear to Point
+	Added check for textures being resized to same size and returns if so without doing anything
+	Added check for small icon (24x24) when bigtexture is available, if it is and a small texture is available, use that instead

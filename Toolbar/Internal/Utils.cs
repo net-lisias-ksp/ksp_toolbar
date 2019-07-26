@@ -156,6 +156,22 @@ namespace Toolbar {
 
             return (texture);
         }
+
+        internal static Texture2D GetTexture(string texturePath)
+        {
+            Texture2D tmptexture;
+            string filePath = TexPathname(texturePath);
+            if (!Utils.TextureExists(filePath))
+            {
+                tmptexture = GameDatabase.Instance.GetTexture(texturePath, false);
+            }
+            else
+            {
+                tmptexture = GetTextureFromFile(texturePath, false);
+            }
+            return tmptexture;
+        }
+
         internal static bool TextureExists(string fileNamePath)
         {
             string path = fileNamePath;
@@ -170,20 +186,20 @@ namespace Toolbar {
             }
             return false;
         }
+
         internal static string TexPathname(string path)
         {
-            string s =  KSPUtil.ApplicationRootPath + "GameData/" + path;
-            Log.info("TexPathname: " + s);
-            return s;
+            return  KSPUtil.ApplicationRootPath + "GameData/" + path;
         }
 
-        internal static Texture2D GetTexture(string path, bool b)
+        internal static Texture2D GetTextureFromFile(string path, bool b)
         {
 
             Texture2D tex = new Texture2D(16, 16, TextureFormat.ARGB32, false);
 
             if (LoadImageFromFile(ref tex, TexPathname(path)))
                 return tex;
+            Log.error("GetTextureFromFile, errorloading: " + TexPathname(path));
             return null;
         }
     }

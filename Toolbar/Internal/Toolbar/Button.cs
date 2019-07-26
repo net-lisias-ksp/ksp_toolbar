@@ -125,8 +125,7 @@ namespace Toolbar
         {
             get
             {
-                Log.info("Texture");
-                if ((texture_ == null) && (command.TexturePath != null))
+                if ((texture_ == null) && (command.TexturePath != null || command.BigTexturePath != null))
                 {
                     try
                     {
@@ -134,18 +133,16 @@ namespace Toolbar
 
                         if (command.BigTexturePath != null)
                         {
-                            tmptexture_ = Utils.GetTexture(command.BigTexturePath, false);
+                            if (toolbar.adjustedSavedScale == 24 && command.TexturePath != null )
+                                tmptexture_ = Utils.GetTexture(command.TexturePath);
+                            else
+                                tmptexture_ = Utils.GetTexture(command.BigTexturePath);
                         }
                         else
                         {
-                            tmptexture_ = Utils.GetTexture(command.TexturePath, false);
-                        }
-
-                        //if ((toolbar.savedScale == 24 && command.TexturePath != null) || command.BigTexturePath == null)
-                        //    tmptexture_ = Utils.GetTexture(command.TexturePath, false);
-                        //else if (command.BigTexturePath != null)
-                        //    tmptexture_ = Utils.GetTexture(command.BigTexturePath, false);
-
+                            tmptexture_ = Utils.GetTexture(command.TexturePath);
+                        }     
+      
                         if (tmptexture_ != null)
                         {
                             if ((tmptexture_.width > MAX_TEX_WIDTH) || (tmptexture_.height > MAX_TEX_HEIGHT))
@@ -158,7 +155,10 @@ namespace Toolbar
                             {
                                 // Make a copy here so we don't change what's in the game database
                                 texture_ = UnityEngine.Object.Instantiate(tmptexture_) as Texture2D;
-
+                                if (texture_ == null)
+                                {
+                                    Log.error("texture_ is null, unable to instantiate copy");
+                                }
                                 if (texture_.format == TextureFormat.DXT5)
                                 {
                                     Texture2D newTexture2DInARGB32 = new Texture2D(texture_.width, texture_.height, TextureFormat.ARGB32, false);
@@ -173,7 +173,7 @@ namespace Toolbar
                                     newTexture2DInARGB32.Apply();
                                     texture_ = newTexture2DInARGB32;
                                 }
-                                LocalTextureScale.Bilinear(texture_, (int)toolbar.adjustedSavedScale, (int)toolbar.adjustedSavedScale);
+                                LocalTextureScale.Point(texture_, (int)toolbar.adjustedSavedScale, (int)toolbar.adjustedSavedScale);
                             }
                             else
                             {

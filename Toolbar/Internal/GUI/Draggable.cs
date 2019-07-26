@@ -67,7 +67,7 @@ namespace Toolbar {
 		private Texture2D CursorTexture {
 			get {
 				if (cursorTexture_ == null) {
-					cursorTexture_ = Utils.GetTexture(cursorTexturePath, false);
+					cursorTexture_ = Utils.GetTextureFromFile(cursorTexturePath, false);
 				}
 				return cursorTexture_;
 			}

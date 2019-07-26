@@ -46,8 +46,11 @@ namespace Toolbar
 
         private static void ThreadedScale(Texture2D tex, int newWidth, int newHeight, bool useBilinear)
         {
+            if (tex.width == newWidth && tex.height == newHeight)
+                return;
             texColors = tex.GetPixels();
             newColors = new Color[newWidth * newHeight];
+
             if (useBilinear)
             {
                 ratioX = 1.0f / ((float)newWidth / (tex.width - 1));

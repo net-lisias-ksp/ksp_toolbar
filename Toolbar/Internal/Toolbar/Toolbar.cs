@@ -957,7 +957,6 @@ namespace Toolbar
                 if (visibleButtons.update() || scaleChanged)
                 {
                     scaleChanged = false;
-                    Log.info("button visibilities have changed, forcing auto-size");
 
                     if (SingleRow)
                     {
@@ -2018,7 +2017,7 @@ namespace Toolbar
                 bool setCursor = (hoveredButton != null) || (draggedButton != null);
                 if (setCursor)
                 {
-                    Cursor.SetCursor(Utils.GetTexture("000_Toolbar/move-cursor", false), new Vector2(10, 10), CursorMode.ForceSoftware);
+                    Cursor.SetCursor(Utils.GetTextureFromFile("000_Toolbar/move-cursor", false), new Vector2(10, 10), CursorMode.ForceSoftware);
                 }
                 return setCursor;
             }
@@ -2035,7 +2034,6 @@ namespace Toolbar
                 visibleButtonsSelector = new VisibleButtonsSelector(savedVisibleButtons);
                 visibleButtonsSelector.OnButtonSelectionChanged += () =>
                 {
-                    Log.info("user changed button visibilities");
                     updateVisibleButtons();
                     fireChange();
                 };
@@ -2057,7 +2055,6 @@ namespace Toolbar
                 scalingButtonSelector = new ScaleButtons(this);
                 scalingButtonSelector.OnButtonScaleChanged += () =>
                 {
-                    Log.info("user changed button scale");
                     updateVisibleButtons();
                     fireChange();
                 };
