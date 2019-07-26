@@ -93,7 +93,7 @@ namespace Toolbar {
             }
         }
 
-        private string bigTexturePath_;
+        private string bigTexturePath_ = null;
 		public string BigTexturePath {
 			set {
 				if (!destroyed) {

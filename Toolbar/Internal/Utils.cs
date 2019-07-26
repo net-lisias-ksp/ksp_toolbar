@@ -161,7 +161,7 @@ namespace Toolbar {
         {
             Texture2D tmptexture;
             string filePath = TexPathname(texturePath);
-            if (!Utils.TextureExists(filePath))
+            if (!Utils.TextureFileExists(filePath))
             {
                 tmptexture = GameDatabase.Instance.GetTexture(texturePath, false);
             }
@@ -172,9 +172,8 @@ namespace Toolbar {
             return tmptexture;
         }
 
-        internal static bool TextureExists(string fileNamePath)
+        internal static bool TextureFileExists(string fileNamePath)
         {
-            string path = fileNamePath;
             if (!System.IO.File.Exists(fileNamePath))
             {
                 // Look for the file with an appended suffix.
@@ -184,7 +183,7 @@ namespace Toolbar {
                         return true;
 
             }
-            return false;
+            return true;
         }
 
         internal static string TexPathname(string path)

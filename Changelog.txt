@@ -105,3 +105,7 @@
 	Changed resize from Bilinear to Point
 	Added check for textures being resized to same size and returns if so without doing anything
 	Added check for small icon (24x24) when bigtexture is available, if it is and a small texture is available, use that instead
+
+1.7.22.1
+	Fixed nullref when loading buttons
+	Fixed check for file existance

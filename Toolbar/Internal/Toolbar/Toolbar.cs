@@ -1337,7 +1337,7 @@ namespace Toolbar
 
         private bool textureExists(string texturePath)
         {
-            return Utils.TextureExists(texturePath);
+            return Utils.TextureFileExists(texturePath);
         }
 
         internal void saveSettings(ConfigNode toolbarNode)

@@ -133,16 +133,24 @@ namespace Toolbar
 
                         if (command.BigTexturePath != null)
                         {
-                            if (toolbar.adjustedSavedScale == 24 && command.TexturePath != null )
-                                tmptexture_ = Utils.GetTexture(command.TexturePath);
+                            string t = null;
+                            if (command.TexturePath != null &&
+                                ((toolbar != null && toolbar.adjustedSavedScale == 24) ||
+                                toolbar == null))
+                                t = command.TexturePath;
                             else
-                                tmptexture_ = Utils.GetTexture(command.BigTexturePath);
+                            {
+                                if (command.BigTexturePath != null)
+                                    t = command.BigTexturePath;
+                                else if (command.TexturePath != null)
+                                    t = command.TexturePath;
+                            }
+                            tmptexture_ = Utils.GetTexture(t);
                         }
                         else
                         {
                             tmptexture_ = Utils.GetTexture(command.TexturePath);
-                        }     
-      
+                        }
                         if (tmptexture_ != null)
                         {
                             if ((tmptexture_.width > MAX_TEX_WIDTH) || (tmptexture_.height > MAX_TEX_HEIGHT))
@@ -155,6 +163,7 @@ namespace Toolbar
                             {
                                 // Make a copy here so we don't change what's in the game database
                                 texture_ = UnityEngine.Object.Instantiate(tmptexture_) as Texture2D;
+     
                                 if (texture_ == null)
                                 {
                                     Log.error("texture_ is null, unable to instantiate copy");
